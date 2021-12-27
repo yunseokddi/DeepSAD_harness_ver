@@ -1,8 +1,8 @@
 import torch
 import torch.utils.data as data
+import os
 
 from torch.utils.data import DataLoader
-from torchvision.datasets import ImageFolder
 from torchvision import transforms
 from PIL import Image
 
@@ -17,7 +17,7 @@ class HarnessLoader(data.Dataset):
         img = Image.open(img_path)
         img_transformed = self.transform(img)
 
-        label = img_path[0:1]
+        label = img_path.split('/')[-2]
 
         if label == "glue":
             label = 0
@@ -30,6 +30,30 @@ class HarnessLoader(data.Dataset):
         return len(self.file_list)
 
 
+def get_file_list(img_path):
+    classes = os.listdir(img_path)
+    glues = []
+    defects = []
+
+    if img_path.split('/')[-2] == 'train':
+        full_path = img_path + classes[0]
+        for file_name in os.listdir(full_path):
+            glues.append(os.path.join(full_path, file_name))
+        return glues
+
+    # classes = [defect, glue]
+    else:
+        full_path = img_path + classes[1]
+        for file_name in os.listdir(full_path):
+            glues.append(os.path.join(full_path, file_name))
+
+        full_path = img_path + classes[0]
+        for file_name in os.listdir(full_path):
+            glues.append(os.path.join(full_path, file_name))
+
+        return glues + defects
+
+
 def get_harness(args):
     transform = transforms.Compose([
         transforms.ToTensor(),
@@ -38,13 +62,11 @@ def get_harness(args):
         transforms.Resize((64, 64))
     ])
 
-    train = ImageFolder(root=args.train_dir, transform=transform)
-    test = ImageFolder(root=args.test_dir, transform=transform)
-    print(train.classes)
-    print(test.classes)
-    #
-    # for data, target in test:
-    #     print(target)
+    train_files = get_file_list(args.train_dir)
+    test_files = get_file_list(args.test_dir)
+
+    train = HarnessLoader(train_files, transform)
+    test = HarnessLoader(test_files, transform)
 
     print('Num of train dataset: {}'.format(len(train)))
     print('Num of test dataset: {}'.format(len(test)))
