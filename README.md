@@ -1,5 +1,4 @@
-# DeepSAD_harness_ver
-Deep one class classification Harness cable dataset version
+# Deep one class classification Harness cable dataset version
 =============
 
 # 1. How to run?
