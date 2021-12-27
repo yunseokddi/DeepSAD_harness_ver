@@ -1,5 +1,4 @@
 # Deep one class classification Harness cable dataset version
-=============
 
 # 1. How to run?
 
