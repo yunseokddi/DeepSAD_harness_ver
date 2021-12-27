@@ -81,7 +81,7 @@ Model | epoch| loss
 AUTOENCODER| 100|8.98e+4
 Deep SVDD | 100| 3.28
 
-**AUROC: 96.39**
+**AUROC: 96.65**
 
 
 ### Logs
