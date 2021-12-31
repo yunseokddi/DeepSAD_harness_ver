@@ -299,7 +299,7 @@ Dataset |  AUROC
 ------|-------|
 Data 1| 96.65
 Data 3| 87.25
-Data 4| 95.04
+Data 4| 95.03
 
 # 5. Reference
 http://proceedings.mlr.press/v80/ruff18a.html [Official paper]
