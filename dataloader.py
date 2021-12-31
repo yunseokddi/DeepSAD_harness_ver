@@ -35,6 +35,7 @@ def get_file_list(img_path):
     glues = []
     defects = []
 
+
     if img_path.split('/')[-2] == 'train':
         full_path = img_path + classes[0]
         for file_name in os.listdir(full_path):

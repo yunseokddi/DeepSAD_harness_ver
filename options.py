@@ -18,9 +18,9 @@ class Options(object):
         self.parser.add_argument('--latent_dim', '-ld', type=int, default=32, help='latent dimension')
         self.parser.add_argument('--normal_class', '-cls', type=int, default=0, help='Set the normal class')
         self.parser.add_argument('--train_dir', '-train_dir', type=str,
-                                 default='../data/harness_paper_dataset/sample/train/', help='Train data path')
+                                 default='../data/harness_paper_dataset/code_dataset/4/train/', help='Train data path')
         self.parser.add_argument('--test_dir', '-test_dir', type=str,
-                                 default='../data/harness_paper_dataset/sample/test/', help='Test data path')
+                                 default='../data/harness_paper_dataset/code_dataset/4/test/', help='Test data path')
 
         self.opt = None
 
